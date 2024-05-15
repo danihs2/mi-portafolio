@@ -78,24 +78,22 @@ jobs:
         env:
           IMAGE_BASE_URL: "/mi-portafolio/" # Definir la ruta base de las imágenes
           LINK_BASE_URL: "/mi-portafolio/" # Definir la ruta base de los enlaces
-
-      - name: Adjust image paths
+  
+      - name: Adjust paths
         run: |
           sed -i 's/src="\/\([^"]*\.png\|[^"]*\.jpg\)"/src="\/mi-portafolio\/\1"/g' out/*.html
-          # Ajusta todas las rutas de las imágenes en los archivos HTML generados
-          # Sustituye src="/*.png" y src="/*.jpg" por src="/mi-portafolio/*.png" y src="/mi-portafolio/*.jpg"
-  
-      - name: Adjust link paths
-        run: |
           sed -i 's/href="\/\([^"]*\)"/href="\/mi-portafolio\/\1"/g' out/*.html
-          # Ajusta todas las rutas de los enlaces en los archivos HTML generados
-          # Sustituye href="/*" por href="/mi-portafolio/*"
-          
+          sed -i 's/src="\/\([^"]*\.png\|[^"]*\.jpg\)"/src="\/mi-portafolio\/\1"/g' out/_next/static/*/pages/*.js
+          sed -i 's/href="\/\([^"]*\)"/href="\/mi-portafolio\/\1"/g' out/_next/static/*/pages/*.js
+          sed -i 's/url(\/\([^"]*\.png\|[^"]*\.jpg\))/url(\/mi-portafolio\/\1)/g' out/_next/static/*/pages/*.js
+          # Ajusta todas las rutas de las imágenes y enlaces en los archivos HTML generados,
+          # así como en los archivos JavaScript y CSS generados por Next.js
+  
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
-
+  
   # Deployment job
   deploy:
     environment:
