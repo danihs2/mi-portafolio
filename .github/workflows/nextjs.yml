@@ -77,11 +77,20 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
         env:
           IMAGE_BASE_URL: "/mi-portafolio/" # Definir la ruta base de las imágenes
+          LINK_BASE_URL: "/mi-portafolio/" # Definir la ruta base de los enlaces
+
       - name: Adjust image paths
         run: |
-          sed -i 's/src="\/home-/src="\/mi-portafolio\/home-/g' out/*.html
-          # Ajusta las rutas de las imágenes en los archivos HTML generados
-          # Sustituye /home- por /mi-portafolio/home-
+          sed -i 's/src="\/\([^"]*\.png\|[^"]*\.jpg\)"/src="\/mi-portafolio\/\1"/g' out/*.html
+          # Ajusta todas las rutas de las imágenes en los archivos HTML generados
+          # Sustituye src="/*.png" y src="/*.jpg" por src="/mi-portafolio/*.png" y src="/mi-portafolio/*.jpg"
+  
+      - name: Adjust link paths
+        run: |
+          sed -i 's/href="\/\([^"]*\)"/href="\/mi-portafolio\/\1"/g' out/*.html
+          # Ajusta todas las rutas de los enlaces en los archivos HTML generados
+          # Sustituye href="/*" por href="/mi-portafolio/*"
+          
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
