@@ -73,6 +73,15 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+
+      - name: Adjust paths in source code
+        run: |
+          sed -i 's/src="\//src="\/mi-portafolio\//g' pages/**/*.js
+          sed -i 's/href="\//href="\/mi-portafolio\//g' pages/**/*.js
+          sed -i 's/url(\//url(\/mi-portafolio\//g' pages/**/*.js
+          # Ajusta las rutas de las imágenes y enlaces en el código fuente de JavaScript
+          # y cualquier otro archivo necesario, como archivos CSS.
+        
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
         env:
