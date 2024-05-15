@@ -75,6 +75,13 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
+        env:
+          IMAGE_BASE_URL: "/mi-portafolio/" # Definir la ruta base de las imágenes
+      - name: Adjust image paths
+        run: |
+          sed -i 's/src="\/home-/src="\/mi-portafolio\/home-/g' out/*.html
+          # Ajusta las rutas de las imágenes en los archivos HTML generados
+          # Sustituye /home- por /mi-portafolio/home-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
