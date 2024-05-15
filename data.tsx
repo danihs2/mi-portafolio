@@ -1,4 +1,4 @@
-import { BookText, CodeSquare, HomeIcon, UserRound, Linkedin, Twitter, Rss, Twitch, Youtube, Crop, Pencil, Computer, Book, Rocket, Speech, Github,  Mail} from "lucide-react";
+import { BookText, CodeSquare, HomeIcon, UserRound, Linkedin, Twitter, Rss, Twitch, Youtube, Crop, Pencil, Computer, Book, Rocket, Speech, Github,  Mail, Brush} from "lucide-react";
 
 export const socialNetworks = [
     {
@@ -15,6 +15,11 @@ export const socialNetworks = [
         id: 3,
         logo: <Github size={30} strokeWidth={1} />,
         src: "https://github.com/danihs2",
+    },
+    {
+        id: 4,
+        logo: <Brush size={30} strokeWidth={1} />,
+        src: "https://www.behance.net/danielhachac",
     },
 ];
 

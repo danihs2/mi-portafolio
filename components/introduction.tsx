@@ -54,6 +54,9 @@ const Introduction = () => {
                         <p className="text-lg md:text-xl">
                             Linkedin: <a href="https://www.linkedin.com/in/daniel-hachac-salas-9a53431bb/" className="text-secondary hover:text-primary" target="_blank">Daniel Hachac</a>
                         </p>
+                        <p className="text-lg md:text-xl">
+                            Behance: <a href="https://www.behance.net/danielhachac" className="text-secondary hover:text-primary" target="_blank">Daniel Hachac</a>
+                        </p>
                     </div>
                 </MotionTransition>
                 <div className=""></div>
